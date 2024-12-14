@@ -61,7 +61,7 @@ sendButton.addEventListener('click', () => {
   if (message !== '') {
     const user = sessionStorage.getItem('user');
     const messages = JSON.parse(localStorage.getItem('messages') || '[]');
-    messages.push({ user, message });
+    messages.push({ user, message, timestamp: new Date().toISOString() });
     localStorage.setItem('messages', JSON.stringify(messages));
     messageInput.value = ''; // Clear input field
     loadMessages();
@@ -77,11 +77,11 @@ logoutButton.addEventListener('click', () => {
 // Load Messages
 function loadMessages() {
   const messages = JSON.parse(localStorage.getItem('messages') || '[]');
-  messagesDiv.innerHTML = '';
+  messagesDiv.innerHTML = ''; // Clear existing messages
   messages.forEach(msg => {
     const messageElement = document.createElement('div');
     messageElement.classList.add('message');
-    messageElement.textContent = `${msg.user}: ${msg.message}`;
+    messageElement.textContent = `${msg.user} (${new Date(msg.timestamp).toLocaleTimeString()}): ${msg.message}`;
     messagesDiv.appendChild(messageElement);
   });
 }
