@@ -1,0 +1,266 @@
+/* Body styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  flex-direction: column;
+  padding: 0;
+}
+
+/* Login screen */
+#auth-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 25%;
+  max-width: 300px; /* Control maximum width */
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Align inputs and buttons to the center */
+  justify-content: center; /* Vertically center content */
+  min-height: 200px;
+}
+
+/* Room selection screen */
+#room-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 25%;
+  max-width: 400px; /* Control maximum width */
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Align inputs and buttons to the center */
+  justify-content: center; /* Vertically center content */
+  min-height: 200px;
+}
+
+/* Modify layout to make buttons next to input */
+#auth-container, #room-container {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  justify-content: center; /* Center them vertically */
+  align-items: center; /* Center them horizontally */
+  gap: 10px; /* Space between input and button */
+  max-width: 100%; /* Ensure container doesn't stretch beyond its max width */
+}
+
+/* Input fields for login and room selection */
+input {
+  width: 80%; /* Make input field take 80% of the container width */
+  max-width: 260px; /* Ensure input width does not exceed 260px */
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px; /* Space between input and button */
+  box-sizing: border-box; /* Include padding and border in width */
+  text-align: center; /* Center text in the input */
+}
+
+/* Buttons for login and room selection */
+button {
+  width: 80%; /* Make button take 80% of the container width */
+  max-width: 260px; /* Ensure button width does not exceed 260px */
+  padding: 12px;
+  background-color: hsl(231, 100%, 50%);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-sizing: border-box;
+  margin-top: 10px; /* Ensure space between input and button */
+}
+
+/* Chat container */
+#chat-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  height: 75vh;
+  position: relative;
+  margin-top: 30px;
+  margin-bottom: 100px;
+  overflow: hidden;
+}
+
+/* Messages section */
+#messages {
+  flex-grow: 1;
+  overflow-y: auto;
+  max-height: calc(75vh - 140px);
+  padding-bottom: 20px;
+  box-sizing: border-box;
+}
+
+/* Input container at the bottom of the screen (bottom dock) */
+#input-container {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 500px;
+  background-color: white;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+  border-top: 1px solid #ccc;
+  margin: 0;
+}
+
+/* Input field in the input container */
+input {
+  width: 70%;
+  max-width: 350px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+/* Buttons */
+button {
+  padding: 12px;
+  background-color: hsl(231, 100%, 50%);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+#logout-button {
+  background-color: #ba0000;
+}
+
+/* Image upload functionality */
+#image-input {
+  display: none;
+}
+
+label[for="image-input"] {
+  display: inline-block;
+  background-color: #f1f1f1;
+  color: #555;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+label[for="image-input"]:hover {
+  background-color: #ddd;
+}
+
+/* Grid layout for room buttons */
+#room-buttons-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 15px;
+  padding: 20px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Style for each room button */
+#room-buttons-container button {
+  padding: 15px;
+  background-color: hsl(231, 100%, 50%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+  width: 100%;
+}
+
+#room-buttons-container button:hover {
+  background-color: #0056b3;
+}
+
+#room-buttons-container button:active {
+  background-color: #003f6b;
+}
+
+#room-buttons-container button:disabled {
+  background-color: #888;
+  cursor: not-allowed;
+}
+
+/* Align buttons within login and room selection */
+#auth-container button,
+#room-container button {
+  margin-top: 10px; /* Ensure proper spacing */
+  width: 80%; /* Make button width consistent with input field */
+  max-width: 260px; /* Ensure button doesn't stretch too wide */
+  padding: 12px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+    height: auto;
+  }
+
+  #auth-container, #room-container {
+    padding: 15px;
+    max-width: 100%;
+    width: 90%;
+  }
+
+  #chat-container {
+    max-width: 100%;
+    padding: 15px;
+  }
+
+  #messages {
+    max-height: 60vh;
+  }
+
+  #input-container {
+    padding: 8px;
+  }
+
+  input, button {
+    width: 90%;
+    max-width: 400px;
+    padding: 12px;
+  }
+
+  #room-buttons-container {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  #room-buttons-container button {
+    padding: 12px;
+    font-size: 14px;
+  }
+}
