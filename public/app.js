@@ -119,18 +119,16 @@ socket.on('new-message', (messageData) => {
       
       if (fileType === 'image') {
         const imageElement = document.createElement('img');
-        currentUser = usernameInput.value; // Set currentUser to the username input value (not the input element)
-        socket.emit('new-message', { 
-          user: 'System', 
-          message: `${currentUser} Uploaded a file`, // Corrected template literal
-          room: currentRoom, 
-          timestamp: getTimestamp() 
-        });
         imageElement.src = messageData.file; // Set the image source to the base64 string
         imageElement.style.maxWidth = '100%'; // Ensure the image fits the container
         imageElement.style.maxHeight = '300px'; // Limit the image height for a better layout
         messageElement.appendChild(imageElement);  // Append the image to the message
-        currentUser = null;  // Reset the currentUser
+
+        // Append a message indicating the file was uploaded (this message will appear together with the image)
+        const systemMessage = document.createElement('div');
+        systemMessage.innerHTML = `<strong>System</strong>: ${messageData.user} uploaded an image`;
+        messageElement.appendChild(systemMessage);
+        
       } else {
         // For other files, show a download link
         const linkElement = document.createElement('a');
