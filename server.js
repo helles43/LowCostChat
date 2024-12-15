@@ -16,7 +16,6 @@ io.on('connection', (socket) => {
   // Send the new message to all users
   socket.on('new-message', (message) => {
     io.emit('new-message', message);
-    console.log('New message', message);
   });
 
   socket.on('disconnect', () => {
