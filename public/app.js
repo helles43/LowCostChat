@@ -15,7 +15,10 @@ const fileInput = document.getElementById('file-input'); // General file input f
 
 let currentUser = null;
 let currentRoom = null;
+let isNSFWEnabled = true;  // Default to enabled
 
+// NSFW word list
+const nsfwWords = ['ass', 'asses', 'nigger', 'nigga', 'nega', 'niggers', 'fuck', 'fuckass', 'condo', 'dildo', 'bitch', 'stupid', 'hoe', 'sex', 'porn', 'horny', 'dumb', 'dumbass', 'slave', 'pussy', 'dick', 'cum', 'bimbo', 'hooker', 'booty', 'butt', 'butthead', 'fucking', 'suck', 'sucking', 'bbc', 'cock', 'balls', 'motherfucker', 'mother fucker', 'brotherfucker', 'brother fucker', 'kidfucker', 'kid fucker', 'fatherfucker', 'father fucker', 'shit', 'holy shit', 'horse shit', 'siblingfucker', 'sibling fucker', 'sisterfucker', 'sister fucker', 'slut', 'spastic', 'twat', 'cocksucker', 'holy fuck', 'bastard', 'fucker', 'childfucker', 'child fucker', 'faggot', 'arse', 'arsehead', 'arse hole', 'asshole', 'ass hole', 'crap', 'pig fucker', 'pigfucker'];
 // Function to get the current timestamp
 function getTimestamp() {
   const now = new Date();
@@ -23,6 +26,20 @@ function getTimestamp() {
   const minutes = now.getMinutes().toString().padStart(2, '0');
   const seconds = now.getSeconds().toString().padStart(2, '0');
   return `${hours}:${minutes}:${seconds}`;
+}
+
+// Function to filter inappropriate words
+function filterNSFW(message) {
+  if (!isNSFWEnabled) {
+    return message; // If NSFW is disabled, return the message as is
+  }
+  
+  let filteredMessage = message;
+  nsfwWords.forEach(word => {
+    const regex = new RegExp(`\\b${word}\\b`, 'gi');  // Case-insensitive match of whole words
+    filteredMessage = filteredMessage.replace(regex, '[NSFW]');  // Replace with asterisks
+  });
+  return filteredMessage;
 }
 
 // Handle login
@@ -42,7 +59,11 @@ joinRoomButton.addEventListener('click', () => {
     currentRoom = roomNumber; // Set the room as the 6-digit number
     roomContainer.style.display = 'none';
     chatContainer.style.display = 'block';
-    
+
+    // Prompt to enable NSFW filter when entering the room (Dialog like login screen)
+    const nsfwPrompt = window.confirm("Would you like to enable the NSFW filter? (You cannot change it later)");
+    isNSFWEnabled = nsfwPrompt;
+
     socket.emit('join-room', { user: currentUser, room: currentRoom, timestamp: getTimestamp() });
     socket.emit('new-message', { user: 'System', message: `${currentUser} has joined Room ${currentRoom}.`, room: currentRoom, timestamp: getTimestamp() });
   } else {
@@ -52,9 +73,14 @@ joinRoomButton.addEventListener('click', () => {
 
 // Handle sending messages (images, videos, or text)
 sendButton.addEventListener('click', () => {
-  const message = messageInput.value.trim();
+  let message = messageInput.value.trim();
   const file = fileInput.files[0]; // Get the selected file
   const timestamp = getTimestamp();
+
+  // Check if the message contains NSFW words and filter it
+  if (message) {
+    message = filterNSFW(message);
+  }
 
   // Check if there's a message or file
   if (message || file) {
@@ -111,6 +137,9 @@ logoutButton.addEventListener('click', () => {
 
 socket.on('new-message', (messageData) => {
   if (messageData.room === currentRoom) { // Display message only if it's from the current room
+    // Filter incoming messages for NSFW words before displaying them
+    const filteredMessage = filterNSFW(messageData.message);
+
     const messageElement = document.createElement('div');
     messageElement.classList.add('message');
     
@@ -138,8 +167,8 @@ socket.on('new-message', (messageData) => {
         messageElement.appendChild(linkElement);
       }
     } else {
-      // Handle text message (existing code)
-      messageElement.innerHTML = `<strong>${messageData.user}</strong> [${messageData.timestamp}]: ${messageData.message}`;
+      // Handle text message (after filtering NSFW words)
+      messageElement.innerHTML = `<strong>${messageData.user}</strong> [${messageData.timestamp}]: ${filteredMessage}`;
     }
 
     // Append the message to the chat
