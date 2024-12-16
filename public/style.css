@@ -113,6 +113,28 @@ button {
   box-sizing: border-box;
 }
 
+/* NSFW filter toggle button */
+#filter-toggle {
+  padding: 10px;
+  background-color: hsl(231, 100%, 50%);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 200px;
+  margin-bottom: 15px;
+  align-self: center; /* Center the button horizontally */
+}
+
+#filter-toggle:hover {
+  background-color: #0056b3;
+}
+
+#filter-toggle:active {
+  background-color: #003f6b;
+}
+
 /* Input container at the bottom of the screen (bottom dock) */
 #input-container {
   position: fixed;
