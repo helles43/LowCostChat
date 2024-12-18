@@ -3,16 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat App</title>
+  <title>LowCostChat Web</title>
+  
+  <!-- Favicon for website logo in the browser tab -->
+  <link rel="icon" href="https://raw.githubusercontent.com/helles43/LowCostChat/refs/heads/main/lcc.png" type="image/x-icon">
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <!-- Authentication screen -->
   <div id="auth-container">
-    <h1>Login</h1>
+    <!-- Website Logo -->
+    <div id="logo-container">
+      <img src="https://raw.githubusercontent.com/helles43/LowCostChat/refs/heads/main/lcc.png" alt="LowCostChat Logo" id="logo" style="width: 100px; height: auto;">
+    </div>
+
+    <h1>Login to LCChat</h1>
     <input type="text" id="username" placeholder="Enter username" required>
     <button id="login-button">Login</button>
-    <p id="auth-error"></p>
+    <p id="auth-error" style="color: red;"></p> <!-- Error message -->
+
+    <!-- Text above the copyright section -->
+    <div id="additional-text">
+      <p>This is a free chat service. Enjoy chatting with others!</p>
+      <p>Last Updated 18.12.2024 22:25 - Web Version V1.1</p>
+      <p>Created by Ege Taha Öğe / helles43, <a href="https://github.com/helles43/LowCostChat/blob/main/LICENSE" target="_blank">Copyright</a></p>
+    </div>
   </div>
 
   <!-- Room selection screen -->
