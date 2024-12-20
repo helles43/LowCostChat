@@ -78,7 +78,7 @@ button {
   width: 80%; /* Make button take 80% of the container width */
   max-width: 260px; /* Ensure button width does not exceed 260px */
   padding: 12px;
-  background-color: hsl(231, 100%, 50%);
+  background-color: hsl(351, 100%, 27%);
   color: white;
   border: none;
   border-radius: 5px;
@@ -113,28 +113,6 @@ button {
   box-sizing: border-box;
 }
 
-/* NSFW filter toggle button */
-#filter-toggle {
-  padding: 10px;
-  background-color: hsl(231, 100%, 50%);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 100%;
-  max-width: 200px;
-  margin-bottom: 15px;
-  align-self: center; /* Center the button horizontally */
-}
-
-#filter-toggle:hover {
-  background-color: #0056b3;
-}
-
-#filter-toggle:active {
-  background-color: #003f6b;
-}
-
 /* Input container at the bottom of the screen (bottom dock) */
 #input-container {
   position: fixed;
@@ -167,7 +145,7 @@ input {
 /* Buttons */
 button {
   padding: 12px;
-  background-color: hsl(231, 100%, 50%);
+  background-color: hsl(351, 100%, 27%);
   color: white;
   border: none;
   border-radius: 5px;
@@ -176,7 +154,7 @@ button {
 }
 
 #logout-button {
-  background-color: #ba0000;
+  background-color: #ff0000;
 }
 
 /* Image upload functionality */
@@ -212,7 +190,7 @@ label[for="image-input"]:hover {
 /* Style for each room button */
 #room-buttons-container button {
   padding: 15px;
-  background-color: hsl(231, 100%, 50%);
+  background-color: hsl(351, 100%, 27%);
   color: white;
   border: none;
   border-radius: 8px;
@@ -220,19 +198,6 @@ label[for="image-input"]:hover {
   transition: background-color 0.3s ease;
   font-size: 16px;
   width: 100%;
-}
-
-#room-buttons-container button:hover {
-  background-color: #0056b3;
-}
-
-#room-buttons-container button:active {
-  background-color: #003f6b;
-}
-
-#room-buttons-container button:disabled {
-  background-color: #888;
-  cursor: not-allowed;
 }
 
 /* Align buttons within login and room selection */
