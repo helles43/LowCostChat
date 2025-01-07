@@ -155,7 +155,7 @@ socket.on('new-message', (messageData) => {
 
         // Append a message indicating the file was uploaded (this message will appear together with the image)
         const systemMessage = document.createElement('div');
-        systemMessage.innerHTML = `<strong>System</strong>: ${messageData.user} uploaded an image`;
+        systemMessage.innerHTML = `<strong>System</strong>: ${timestamp} ${messageData.user} uploaded an image`;
         messageElement.appendChild(systemMessage);
         
       } else {
